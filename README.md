@@ -1,11 +1,11 @@
 ## Тестовое задание
 
 Реализовать микро-сервисную архитектуру для работы с банковскими счетами пользователя. Только backend. Первый REST сервис - работа с клиентами. Второй REST сервис - для работы со счетами. Третий REST сервис - общий.
-> Описание: Сервер API (JSON HTTP API)
-Средста разработки: Java 8 (IntelliJ IDEA Community Edition)
-Framework: Spring Boot 2.6.3
-База данных: Postgresql
-Протокло: HTTP, порты: 8080, 8081, 8082
+> Описание: Сервер API (JSON HTTP API)  
+Средста разработки: Java 8 (IntelliJ IDEA Community Edition)  
+Framework: Spring Boot 2.6.3  
+База данных: Postgresql  
+Протокло: HTTP, порты: 8080, 8081, 8082  
 
 Описание каждого сервиса ниже.
 
@@ -30,78 +30,78 @@ Framework: Spring Boot 2.6.3
 
 Каждый из сервисов должен представлять собой отдельное приложение, запускаться отдельно, независимо, и, иметь свою базу данных. В качестве СУБД должна использоваться postgres. Для написания самих приложения использовать spring-boot последней версии. Сервисы должны взаимодействовать между собой только через http протокол.
 
-##Реализация
+## Реализация
 
 1. **REST сервис для работы с пользователями (customer-service)**
 	- Добавление клиента:
 		- Запрос (Post):
-		```json
-http://localhost:8080/user
-{
-    "name": "Anna",
-    "phone": "12345"
-}
-```
+            ```json
+            http://localhost:8080/user
+            {
+                "name": "Anna",
+                "phone": "12345"
+            }
+            ```
 		- Ответ:
-		```json
- {
-    "id": 5,
-    "name": "Anna",
-    "phone": "12345"
-}
-```
+            ```json
+            {
+                "id": 5,
+                "name": "Anna",
+                "phone": "12345"
+            }
+            ```
 	- Удаление клиента:
 		- Запрос (Delete):
-		```json
-http://localhost:8080/user?id=2
-```
+            ```json
+            http://localhost:8080/user?id=2
+            ```
 		- Ответ:
-		```json
-{
-    "id": 2,
-    "name": "Dima",
-    "phone": "73345"
-}
-```
+            ```json
+            {
+                "id": 2,
+                "name": "Dima",
+                "phone": "73345"
+            }
+            ```
 	- Изменение клиента:
 		- Запрос (Post):
-		```json
-http://localhost:8080/user
-{
-    "id": 5,
-    "name": "Anna",
-    "phone": "54321"
-}
-```
+            ```json
+            http://localhost:8080/user
+            {
+                "id": 5,
+                "name": "Anna",
+                "phone": "54321"
+            }
+            ```
 		- Ответ:
-		```json
-{
-    "id": 5,
-    "name": "Anna",
-    "phone": "54321"
-}
-```
+            ```json
+            {
+                "id": 5,
+                "name": "Anna",
+                "phone": "54321"
+            }
+            ```
 	- Получение клиента по id:
 		- Запрос (Get):
-		```json
-http://localhost:8080/user?id=5
-```
+            ```json
+            http://localhost:8080/user?id=5
+            ```
 		- Ответ:
-		```json
-    {
-        "id": 5,
-        "name": "Anna",
-        "phone": "54321"
-    }
-```
+            ```json
+            {
+                "id": 5,
+                "name": "Anna",
+                "phone": "54321"
+            }
+            ```
 	- Получение все клиентов:
 		- Запрос (Get):
-		```json
-http://localhost:8080/user
-```
+            ```json
+            http://localhost:8080/user
+            ```
 		- Ответ:
-		```json
-[
+            ```json
+            [
 				{
 					"id": 1,
 					"name": "Rata",
@@ -122,166 +122,166 @@ http://localhost:8080/user
 					"name": "Anna",
 					"phone": "54321"
 				}
-]
-```
+            ]
+            ```
 2. **REST сервис для работы со счетами (account-service)**
 	- Создать счёт:
 		- Запрос (Post):
-		```json
-http://localhost:8081/account
-{
-    "idCustomer": "5"
-}
-```
+            ```json
+            http://localhost:8081/account
+            {
+                "idCustomer": "5"
+            }
+            ```
 		- Ответ:
-		```json
-{
-    "id": 11,
-    "number": 1568,
-    "idCustomer": "5",
-    "money": 0.0
-}
-```
+            ```json
+            {
+                "id": 11,
+                "number": 1568,
+                "idCustomer": "5",
+                "money": 0.0
+            }
+            ```
 	- Удалить счет:
 		- Запрос (Delete):
-		```json
-http://localhost:8081/account?id=4
-```
+            ```json
+            http://localhost:8081/account?id=4
+            ```
 		- Ответ:
-		```json
-{
-    "id": 4,
-    "number": 52,
-    "idCustomer": 1,
-    "money": 0.0
-}
-```
+            ```json
+            {
+                "id": 4,
+                "number": 52,
+                "idCustomer": 1,
+                "money": 0.0
+            }
+            ```
 	- Получить счет по id:
 		- Запрос (Get):
-		```json
-http://localhost:8081/account?id=9
-```
+            ```json
+            http://localhost:8081/account?id=9
+            ```
 		- Ответ:
-		```json
-{
-    "id": 9,
-    "number": 57,
-    "idCustomer": "2",
-    "money": 9.0
-}
-```
+            ```json
+            {
+                "id": 9,
+                "number": 57,
+                "idCustomer": "2",
+                "money": 9.0
+            }
+            ```
 	- Пополнить счет:
 		- Запрос (Post):
-		```json
-http://localhost:8081/account
-{
-    "number": 1568,
-    "money": 100.0
-}
-```
+            ```json
+            http://localhost:8081/account
+            {
+                "number": 1568,
+                "money": 100.0
+            }
+            ```
 		- Ответ:
-		```json
-{
-    "id": 11,
-    "number": 1568,
-    "idCustomer": "5",
-    "money": 100.0
-}
-```
+            ```json
+            {
+                "id": 11,
+                "number": 1568,
+                "idCustomer": "5",
+                "money": 100.0
+            }
+            ```
 	- Списать средства со счета:
 		- Запрос (Post):
-		```json
-http://localhost:8081/account
-{
-    "id": 11,
-    "money": -50.0
-}
-```
+            ```json
+            http://localhost:8081/account
+            {
+                "id": 11,
+                "money": -50.0
+            }
+            ```
 		- Ответ:
-		```json
-{
-    "id": 11,
-    "number": 1568,
-    "idCustomer": "5",
-    "money": 50.0
-}
-```
+            ```json
+            {
+                "id": 11,
+                "number": 1568,
+                "idCustomer": "5",
+                "money": 50.0
+            }
+            ```
 3. **REST общий сервис (common-service)**
 	- По идентификатору клиента вывести полную информацию о клиенте:
 		- Запрос (Get):
-		```json
-http://localhost:8082/common?id=5
-```
+            ```json
+            http://localhost:8082/common?id=5
+            ```
 		- Ответ:
-		```json
-{
-    "cus": [
-        {
-            "id": 5,
-            "name": "Anna",
-            "phone": "54321"
-        }
-    ],
-    "acc": [
-        {
-            "id": 11,
-            "number": 1568,
-            "idCustomer": "5",
-            "money": 50.0
-        },
-        {
-            "id": 12,
-            "number": 1569,
-            "idCustomer": "5",
-            "money": 25.0
-        }
-    ],
-    "money": 75.0
-}
-```
+            ```json
+            {
+                "cus": [
+                    {
+                        "id": 5,
+                        "name": "Anna",
+                        "phone": "54321"
+                    }
+                ],
+                "acc": [
+                    {
+                        "id": 11,
+                        "number": 1568,
+                        "idCustomer": "5",
+                        "money": 50.0
+                    },
+                    {
+                        "id": 12,
+                        "number": 1569,
+                        "idCustomer": "5",
+                        "money": 25.0
+                    }
+                ],
+                "money": 75.0
+            }
+            ```
 	- Перевод средств между счетами
 		- Запрос (Post):
-		```json
-http://localhost:8082/common
-{
-    "acc": [
-        {
-            "number": 1568
-        },
-        {
-            "number": 1569
-        }
-    ],
-    "money": 10.0
-}
-```
+            ```json
+            http://localhost:8082/common
+            {
+                "acc": [
+                    {
+                        "number": 1568
+                    },
+                    {
+                        "number": 1569
+                    }
+                ],
+                "money": 10.0
+            }
+            ```
 		- Ответ:
-		```json
-{
-    "cus": null,
-    "acc": [
-        {
-            "id": 11,
-            "number": 1568,
-            "idCustomer": "5",
-            "money": 40.0
-        },
-        {
-            "id": 12,
-            "number": 1569,
-            "idCustomer": "5",
-            "money": 35.0
-        }
-    ],
-    "money": 10.0
-}
-```
+            ```json
+            {
+                "cus": null,
+                "acc": [
+                    {
+                        "id": 11,
+                        "number": 1568,
+                        "idCustomer": "5",
+                        "money": 40.0
+                    },
+                    {
+                        "id": 12,
+                        "number": 1569,
+                        "idCustomer": "5",
+                        "money": 35.0
+                    }
+                ],
+                "money": 10.0
+            }
+            ```
 
 
 
 ### Методика тестирования:
 
-Для тестирования будет использоваться postman. Сценарии использования:
+Для тестирования использовался postman. Сценарии использования:
 1. С помощью customer-service добавить несколько клиентов
 2. С помощью account-service для разных клиентов создать счета
 3. С помощью account-service для разных клиентов пополнить счета для нескольких клиентов
